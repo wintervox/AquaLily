@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Name</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="logo">AquaCBC Hub</div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="water.html">Water</a>
+    <a href="cbc.html">CBC Centre</a>
+    <a href="cart.html">Cart</a>
+  </div>
+</nav>
+
+<section>
+  <h1>Page Title Here</h1>
+
+  <div class="grid">
+
+    <div class="card">
+      <img src="images/item1.jpg" alt="">
+      <div class="card-content">
+        <h3>Item Name</h3>
+        <p>Ksh Price</p>
+       <button onclick="addToCart('20L Refill', 50)">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- Add more items here -->
+
+  </div>
+</section>
+
+</body>
+</html>
+<script>
+function addToCart(name, price){
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  cart.push({name: name, price: price});
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  alert(name + " added to cart!");
+}
+</script>

@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Water Refill</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="logo">AquaCBC Hub</div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="water.html">Water</a>
+    <a href="cbc.html">CBC Centre</a>
+    <a href="cart.html">Cart</a>
+  </div>
+</nav>
+
+<section>
+  <h1>Water Refill & Distribution</h1>
+
+  <div class="grid">
+
+    <div class="card">
+      <img src="images/refill.jpg" alt="5l Bottle Refill">
+      <div class="card-content">
+        <h3>5L Refill</h3>
+        <p>Ksh 50</p>
+       <button onclick="addToCart('5L Refill', 50)">Add to Cart</button>
+      </div>
+    </div>
+      <div class="card">
+      <img src="images/refill.jpg" alt="10l Bottle Refill">
+      <div class="card-content">
+        <h3>10L Refill</h3>
+        <p>Ksh 100</p>
+       <button onclick="addToCart('10L Refill', 100)">Add to Cart</button>
+      </div>
+    </div>
+      <div class="card">
+      <img src="images/refill.jpg" alt="20l Bottle Refill">
+      <div class="card-content">
+        <h3>20L Refill</h3>
+        <p>Ksh 150</p>
+       <button onclick="addToCart('20L Refill', 50)">Add to Cart</button>
+      </div>
+    </div>
+      <div class="card">
+      <img src="images/refill.jpg" alt="20L Refill">
+      <div class="card-content">
+        <h3>20L Bottle</h3>
+        <p>Ksh 300</p>
+       <button onclick="addToCart('20L bottle', 300)">Add to Cart</button>
+      </div>
+    </div>
+      <div class="card">
+      <img src="images/refill.jpg" alt="10l Bottle">
+      <div class="card-content">
+        <h3>10L Bottle</h3>
+        <p>Ksh 200</p>
+       <button onclick="addToCart('10L bottle', 200)">Add to Cart</button>
+      </div>
+    </div>
+      <div class="card">
+      <img src="images/refill.jpg" alt="Water Half litre case">
+      <div class="card-content">
+        <h3>Water Half litre case</h3>
+        <p>Ksh 400</p>
+       <button onclick="addToCart('Water Half litre case', 400)">Add to Cart</button>
+      </div>
+    </div> 
+    
+    <div class="card">
+      <img src="images/container.jpg" alt="Container">
+      <div class="card-content">
+        <h3>Water 1Litre case</h3>
+        <p>Ksh 400</p>
+        <button onclick="addToCart('Water 1Litre case', 400)">Add to Cart</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="images/dispenser.jpg" alt="Small Mechanical Water Pump">
+      <div class="card-content">
+        <h3>Small Mechnical Water Pump</h3>
+        <p>Ksh 350</p>
+        <button onclick="addToCart('Small mechanical Water Pump', 350)">Add to Cart</button>
+      </div>
+    </div>
+      <div class="card">
+      <img src="images/refill.jpg" alt="Large Mechanical Water Pump">
+      <div class="card-content">
+        <h3>Large Mechanical Water Pump</h3>
+        <p>Ksh 500</p>
+       <button onclick="addToCart('Large mechanical Water Pump', 500)">Add to Cart</button>
+      </div>
+    </div>
+      <div class="card">
+      <img src="images/refill.jpg" alt="Small Electric Water Pump">
+      <div class="card-content">
+        <h3>Small Electric Water Pump</h3>
+        <p>Ksh 450</p>
+       <button onclick="addToCart('Small Electric Water Pump', 450)">Add to Cart</button>
+      </div>
+    </div>
+      <div class="card">
+      <img src="images/refill.jpg" alt="Large Electric Water Pump">
+      <div class="card-content">
+        <h3>Large Electric Water Pump</h3>
+        <p>Ksh 900</p>
+       <button onclick="addToCart('Large Electric Water Pump', 900)">Add to Cart</button>
+      </div>
+
+  </div>
+</section>
+
+</body>
+</html>
+<script>
+function addToCart(name, price){
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  cart.push({name: name, price: price});
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  alert(name + " added to cart!");
+}
+</script>

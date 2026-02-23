@@ -1,0 +1,90 @@
+/* GENERAL */
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#f4f9ff;
+  color:#023e8a;
+}
+
+h1,h2,h3{
+  margin:10px 0;
+}
+
+section{
+  padding:50px 40px;
+  text-align:center;
+}
+
+/* NAVBAR */
+.navbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 40px;
+  background:#001d3d;
+}
+
+.logo{
+  font-size:22px;
+  font-weight:bold;
+  color:white;
+}
+
+.nav-links a{
+  color:white;
+  text-decoration:none;
+  margin-left:25px;
+  transition:0.3s;
+}
+
+.nav-links a:hover{
+  color:#90e0ef;
+}
+
+/* GRID */
+.grid{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:30px;
+  margin-top:40px;
+}
+
+/* PRODUCT CARD */
+.card{
+  width:280px;
+  background:white;
+  border-radius:15px;
+  overflow:hidden;
+  box-shadow:0 4px 12px rgba(0,0,0,0.1);
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 8px 20px rgba(0,0,0,0.2);
+}
+
+.card img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+}
+
+.card-content{
+  padding:20px;
+}
+
+button{
+  padding:10px 15px;
+  border:none;
+  background:#0077b6;
+  color:white;
+  border-radius:8px;
+  cursor:pointer;
+  margin-top:10px;
+}
+
+button:hover{
+  background:#023e8a;
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Panel - AquaCBC</title>
+<style>
+body{
+  font-family:Arial;
+  background:#f4f9ff;
+  padding:40px;
+}
+
+.order{
+  background:white;
+  padding:20px;
+  margin-bottom:20px;
+  border-radius:10px;
+  box-shadow:0 3px 10px rgba(0,0,0,0.1);
+}
+</style>
+</head>
+<body>
+
+<h1>Admin Orders</h1>
+
+<div id="orders"></div>
+
+<script>
+let lastOrder = JSON.parse(localStorage.getItem("lastOrder"));
+
+const container = document.getElementById("orders");
+
+if(lastOrder){
+  container.innerHTML = `
+    <div class="order">
+      <h3>Items:</h3>
+      <pre>${JSON.stringify(lastOrder.items, null, 2)}</pre>
+      <p><b>Total:</b> Ksh ${lastOrder.total}</p>
+      <p><b>Delivery Location:</b> ${lastOrder.location}</p>
+      <p><b>Description:</b> ${lastOrder.description}</p>
+      <p><b>Payment Method:</b> ${lastOrder.paymentMethod}</p>
+    </div>
+  `;
+} else {
+  container.innerHTML = "<p>No orders yet.</p>";
+}
+</script>
+
+</body>
+</html>

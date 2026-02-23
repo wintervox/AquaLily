@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AquaCBC Hub</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:url("images/background.jpg") no-repeat center center/cover;
+  min-height:100vh;
+  color:white;
+}
+
+/* Dark overlay WITHOUT blocking clicks */
+.overlay{
+  background:rgba(0,0,0,0.6);
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:20px;
+}
+
+/* Heading */
+h1{
+  font-size:45px;
+  margin-bottom:10px;
+}
+
+/* Floating cards */
+.cards{
+  display:flex;
+  gap:40px;
+  margin-top:40px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+.card{
+  width:260px;
+  padding:30px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.15);
+  backdrop-filter:blur(10px);
+  box-shadow:0 0 25px rgba(0,119,182,0.6);
+  animation:float 4s ease-in-out infinite;
+}
+
+/* Floating animation */
+@keyframes float{
+  0%{transform:translateY(0);}
+  50%{transform:translateY(-15px);}
+  100%{transform:translateY(0);}
+}
+
+/* Sign up button */
+.signup-btn{
+  margin-top:60px;
+  padding:15px 30px;
+  background:#00b4d8;
+  border:none;
+  color:white;
+  font-size:18px;
+  border-radius:30px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.signup-btn:hover{
+  background:#0077b6;
+  box-shadow:0 0 20px #00b4d8;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="overlay">
+
+  <h1>AquaCBC Hub</h1>
+  <p>Pure Water • Quality Education</p>
+
+  <div class="cards">
+
+    <div class="card">
+      <h3>💧 Water Refill</h3>
+      <p>Clean & affordable water supply.</p>
+    </div>
+
+    <div class="card">
+      <h3>📚 CBC Centre</h3>
+      <p>All CBC materials available.</p>
+    </div>
+
+  </div>
+
+ <button class="signup-btn" onclick="goSignup()">
+  Sign Up
+</button>
+
+</div>
+
+<script>
+/* If already logged in, skip this page */
+if(localStorage.getItem("loggedIn")){
+  window.location.href="index.html";
+}
+
+function goSignup(){
+  window.location.href="signup.html";
+}
+</script>
+
+</body>
+</html>

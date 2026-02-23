@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Your Cart - AquaCBC Hub</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="logo">AquaCBC Hub</div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="water.html">Water</a>
+    <a href="cbc.html">CBC Centre</a>
+    <a href="cart.html">Cart</a>
+  </div>
+</nav>
+
+<section>
+  <h1>Your Cart</h1>
+
+  <div id="cartItems" class="grid"></div>
+
+  <h2 id="totalPrice"></h2>
+
+  <button onclick="clearCart()">Clear Cart</button>
+</section>
+
+<script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+const cartContainer = document.getElementById("cartItems");
+const totalDisplay = document.getElementById("totalPrice");
+
+function displayCart(){
+  cartContainer.innerHTML = "";
+  let total = 0;
+
+  cart.forEach((item, index) => {
+    total += item.price;
+
+    cartContainer.innerHTML += `
+      <div class="card">
+        <div class="card-content">
+          <h3>${item.name}</h3>
+          <p>Ksh ${item.price}</p>
+          <button onclick="removeItem(${index})">Remove</button>
+        </div>
+      </div>
+    `;
+  });
+
+  totalDisplay.innerText = "Total: Ksh " + total;
+}
+
+function removeItem(index){
+  cart.splice(index, 1);
+  localStorage.setItem("cart", JSON.stringify(cart));
+  displayCart();
+}
+
+function clearCart(){
+  localStorage.removeItem("cart");
+  cart = [];
+  displayCart();
+}
+
+displayCart();
+</script>
+
+</body>
+</html> 
+<script>
+function addToCart(name, price){
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  cart.push({name: name, price: price});
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  alert(name + " added to cart!");
+}
+</script>
+<button onclick="location.href='checkout.html'">
+  Proceed to Checkout
+</button>

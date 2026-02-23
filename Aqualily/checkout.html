@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Checkout - AquaCBC Hub</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet/dist/leaflet.js">let map;
+let marker;
+
+function initMap(lat = -1.2921, lng = 36.8219){ // Default: Nairobi
+
+  map = L.map('map').setView([lat, lng], 13);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap'
+  }).addTo(map);
+
+  marker = L.marker([lat, lng]).addTo(map);
+}
+
+function getLocation(){
+  if(navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(function(position){
+
+      const lat = position.coords.latitude;
+      const lng = position.coords.longitude;
+
+      document.getElementById("location").value =
+        "Lat: " + lat + ", Lng: " + lng;
+
+      map.setView([lat, lng], 15);
+      marker.setLatLng([lat, lng]);
+
+    });
+  } else {
+    alert("Geolocation not supported.");
+  }
+}
+
+initMap();</script>
+<style>
+body{
+  margin:0;
+  font-family:Arial;
+  background:#f4f9ff;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+}
+
+.container{
+  width:400px;
+  background:white;
+  padding:30px;
+  border-radius:15px;
+  box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+
+h2{
+  text-align:center;
+  color:#023e8a;
+}
+
+input, textarea, select{
+  width:100%;
+  padding:10px;
+  margin:10px 0;
+  border:1px solid #ccc;
+  border-radius:8px;
+}
+
+button{
+  width:100%;
+  padding:12px;
+  background:#0077b6;
+  color:white;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+button:hover{
+  background:#023e8a;
+}
+
+.summary{
+  margin-top:15px;
+  padding:10px;
+  background:#e6f4ff;
+  border-radius:8px;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+  <h2>Checkout</h2>
+
+  <div class="summary">
+    <p id="orderSummary"></p>
+  </div>
+
+  <input type="text" id="location" placeholder="Enter Your Location" required>
+  <button type="button" onclick="getLocation()">
+  Use My Live Location 📍
+</button>
+
+  <textarea id="description" rows="4" placeholder="Order Description / Special Instructions"></textarea>
+
+  <select id="paymentMethod">
+    <option value="">Select Payment Method</option>
+    <option value="Cash on Delivery">Cash on Delivery</option>
+    <option value="Mobile Payment">Mobile Payment (M-Pesa)</option>
+    <option value="Bank Transfer">Bank Transfer</option>
+  </select>
+<h3>Delivery Location Map</h3>
+<div id="map" style="height:250px; border-radius:10px;"></div>
+  <button onclick="placeOrder()">Confirm Order</button>
+
+</div>
+
+<script>
+
+// Show cart summary
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+let total = 0;
+let summaryText = "";
+
+cart.forEach(item=>{
+  total += item.price;
+  summaryText += item.name + " - Ksh " + item.price + "<br>";
+});
+
+summaryText += "<br><b>Total: Ksh " + total + "</b>";
+
+document.getElementById("orderSummary").innerHTML = summaryText;
+
+// Place order
+function placeOrder(){
+
+  const location = document.getElementById("location").value;
+  const description = document.getElementById("description").value;
+  const payment = document.getElementById("paymentMethod").value;
+
+  if(!location || !payment){
+    alert("Please fill in location and payment method.");
+    return;
+  }
+
+  const order = {
+    items: cart,
+    total: total,
+    location: location,
+    description: description,
+    paymentMethod: payment
+  };
+
+  localStorage.setItem("lastOrder", JSON.stringify(order));
+  localStorage.removeItem("cart");
+
+  alert("Order placed successfully!");
+
+  window.location.href="index.html";
+}
+
+</script>
+
+</body>
+</html>
